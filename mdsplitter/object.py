@@ -4,6 +4,8 @@
 class Object():
     """Arbitrary object class."""
 
+    EXCLUDE = tuple()
+
     def __init__(self, **kwargs):
         """Set all keyword args as attributes."""
         for k, v in kwargs.items():
@@ -11,7 +13,7 @@ class Object():
 
     def __repr__(self):
         """Object(attr='value')."""
-        attrs = ", ".join([f"{k}={v!r}" for k, v in self.__dict__.items()])
+        attrs = ", ".join([f"{k}={v!r}" for k, v in self.__dict__.items() if not k.startswith("_") and k not in self.EXCLUDE])
         return f"{self.__class__.__name__}({attrs})"
 
     def __eq__(self, other):

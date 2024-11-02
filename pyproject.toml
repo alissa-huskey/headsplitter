@@ -8,7 +8,21 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.10.2"
-
+markdown-it-py = "^3.0.0"
+mdit-py-plugins = "^0.4.2"
+black = "^24.10.0"
+flake8 = "^7.1.1"
+flake8-black = "^0.3.6"
+flake8-docstrings = "^1.7.0"
+flake8-isort = "^6.1.1"
+ipython = "^8.29.0"
+isort = "^5.13.2"
+pdbpp = "^0.10.3"
+pycodestyle = "^2.12.1"
+pylama = "^8.4.1"
+pynvim = "^0.5.0"
+pylint = "^3.3.1"
+pytest = "^8.3.3"
 
 [build-system]
 requires = ["poetry-core"]
