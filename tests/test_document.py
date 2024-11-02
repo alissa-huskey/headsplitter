@@ -1,9 +1,12 @@
 from pathlib import Path
 
 import pytest
+from anytree import RenderTree, AsciiStyle
 
 from mdsplitter.document import Document
 from mdsplitter.object import Object as Stub
+
+from . import assert_tree_equal
 
 bp = breakpoint
 
@@ -38,6 +41,16 @@ def test_document_path_str():
     """
     doc = Document(path="somefile.py")
     assert doc.path == Path("somefile.py")
+
+
+def test_document_title():
+    """
+    GIVEN: A document with a path.
+    WHEN: .title is accessed
+    THEN: the path stem is returned
+    """
+    doc = Document(path=Path("my-book.md"))
+    assert doc.title == "my-book"
 
 
 def test_document_tokens(fixtures):
@@ -93,6 +106,29 @@ def test_document_headings(fixtures):
 
     assert doc.headings[3].title == "Subheading C"
     assert doc.headings[3].level == 2
+
+
+def test_document_tree(fixtures):
+    """
+    GIVEN: A document with headings
+    WHEN: .tree is accessed
+    THEN: a list of root node section should be returned
+    """
+    doc = Document(path=fixtures / "complex_headings.md")
+
+    tree = """
+Main
+|-- A
+|   |-- I
+|   +-- II
+|       |-- 1
+|       +-- 2
+|-- B
++-- C
+    """
+
+    assert_tree_equal(doc.tree.root, tree)
+
 
 def test_document_():
     """

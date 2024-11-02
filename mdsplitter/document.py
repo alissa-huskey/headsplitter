@@ -6,8 +6,10 @@ from markdown_it import MarkdownIt
 from mdit_py_plugins.footnote import footnote_plugin
 from mdit_py_plugins.front_matter import front_matter_plugin
 
-from mdsplitter.object import Object
 from mdsplitter.heading import Heading
+from mdsplitter.object import Object
+from mdsplitter.section import Section
+from mdsplitter.tree import Tree
 
 bp = breakpoint
 
@@ -17,6 +19,7 @@ class Document(Object):
 
     _path: Path = None
     _text: str = None
+    _title: str = None
     _tokens: list = None
 
     def __init__(self, path: Path=None, **kwargs):
@@ -56,6 +59,23 @@ class Document(Object):
                 raise Exception("No such file exists: {self.path}.")
             self._text = self.path.read_text()
         return self._text
+
+    @property
+    def title(self):
+        """Get document title."""
+        if self.path and not self._title:
+            self._title = self.path.stem
+        return self._title
+
+    @title.setter
+    def title(self, title):
+        self._title = title
+
+    @property
+    def lines(self):
+        if not self.text:
+            return
+        return self.text.splitlines()
 
     @text.setter
     def text(self, text):
@@ -100,3 +120,11 @@ class Document(Object):
             headings.append(heading)
 
         return headings
+
+    @property
+    def tree(self):
+        """Return a hierarchical tree of sections."""
+        if not self.headings:
+            return
+
+        return Tree(document=self)

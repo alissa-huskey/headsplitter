@@ -23,6 +23,7 @@ pylama = "^8.4.1"
 pynvim = "^0.5.0"
 pylint = "^3.3.1"
 pytest = "^8.3.3"
+anytree = "2.8.0"
 
 [build-system]
 requires = ["poetry-core"]
