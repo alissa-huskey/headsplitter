@@ -1,6 +1,12 @@
 from anytree import AsciiStyle, RenderTree
+from mdsplitter.object import Object
 
 bp = breakpoint
+
+
+class Stub(Object):
+    def __getattr__(self, name):
+        return None
 
 
 def render_tree(tree):

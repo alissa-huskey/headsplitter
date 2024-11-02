@@ -2,6 +2,7 @@
 
 from anytree import AsciiStyle, RenderTree
 
+from mdsplitter.heading import Heading
 from mdsplitter.object import Object
 from mdsplitter.section import Section
 
@@ -71,13 +72,11 @@ class Tree(Object):
             sections.append(section)
             previous = section
 
-        roots = tuple(set([node.root for node in sections]))
 
-        # make sure everything is under a single root node
-        if len(roots) > 1:
-            root = Section(level=0, line=0, heading=Object(title=(self.title or "Document")))
-            root.children += roots
-            sections.insert(0, root)
+        # put everything is under a single document root
+        root = Section(heading=Heading(title=(self.title or "Document")))
+        root.children += tuple(set([node.root for node in sections]))
+        sections.insert(0, root)
 
         self._sections = sections
 

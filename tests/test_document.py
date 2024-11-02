@@ -4,9 +4,8 @@ import pytest
 from anytree import RenderTree, AsciiStyle
 
 from mdsplitter.document import Document
-from mdsplitter.object import Object as Stub
 
-from . import assert_tree_equal
+from . import assert_tree_equal, Stub
 
 bp = breakpoint
 
@@ -117,17 +116,18 @@ def test_document_tree(fixtures):
     doc = Document(path=fixtures / "complex_headings.md")
 
     tree = """
-Main
-|-- A
-|   |-- I
-|   +-- II
-|       |-- 1
-|       +-- 2
-|-- B
-+-- C
+complex_headings
++-- Main
+    |-- A
+    |   |-- I
+    |   +-- II
+    |       |-- 1
+    |       +-- 2
+    |-- B
+    +-- C
     """
 
-    assert_tree_equal(doc.tree.root, tree)
+    assert_tree_equal(doc.tree, tree)
 
 
 def test_document_():

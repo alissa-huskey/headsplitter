@@ -2,8 +2,10 @@ import pytest
 from anytree import Node, NodeMixin
 
 from mdsplitter.document import Document
-from mdsplitter.object import Object as Stub
 from mdsplitter.tree import Tree
+
+# NOTE: don't use tests.Stub here, it breaks node.children
+from mdsplitter.object import Object as Stub
 
 from . import assert_tree_equal, render_tree
 
@@ -52,10 +54,11 @@ def test_tree_construct():
     tree.construct()
 
     text = """
-Main
-|-- A
-|-- B
-+-- C
+Document
++-- Main
+    |-- A
+    |-- B
+    +-- C
     """
 
     assert tree._sections
@@ -90,7 +93,7 @@ def test_tree_find_next_nodes():
     i, ii = StubNode("I", order=0), StubNode("II", order=1)
     one, two = StubNode("1", order=0), StubNode("2", order=1)
 
-    main.children = a, b, c
+    main.children += a, b, c
     a.children = i, ii
     ii.children = one, two
 

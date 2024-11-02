@@ -12,6 +12,7 @@ class Heading(Object):
     EXCLUDE = ("children")
 
     level: int = 0
+    line: int = 0
     nesting: int = 0
     title: str = None
     children: list = None
