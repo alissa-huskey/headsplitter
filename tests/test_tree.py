@@ -38,10 +38,10 @@ def test_tree_document():
     assert tree.headings == ["A", "B", "C"]
     assert tree.line_count == 40
 
-def test_tree_construct():
+def test_tree_organize():
     """
     GIVEN: A Tree with with headings
-    WHEN: .construct() is called
+    WHEN: .organize() is called
     THEN: a list of section nodes should be returned
     AND: the nodes should be organized in a tree by heading
     """
@@ -51,7 +51,7 @@ def test_tree_construct():
         Stub(title="B", line=20, level=2),
         Stub(title="C", line=30, level=2),
     ))
-    tree.construct()
+    tree.organize()
 
     text = """
 Document
@@ -61,7 +61,7 @@ Document
     +-- C
     """
 
-    assert tree._sections
+    assert tree.sections
 
     assert_tree_equal(tree, text)
 
@@ -73,7 +73,7 @@ def test_tree_order_siblings():
     """
     a, b, c = Node("A"), Node("B"), Node("C")
     main = Node(name="Main", children=[a, b, c])
-    tree = Tree(_sections=(main, a, b, c))
+    tree = Tree(sections=(main, a, b, c))
     tree.order_siblings()
 
     assert a.order == 0
@@ -109,7 +109,7 @@ Main
     """
 
     assert_tree_equal(main, text)
-    tree = Tree(_sections=(main, a, i, ii, one, two, b, c))
+    tree = Tree(sections=(main, a, i, ii, one, two, b, c))
     tree.find_next_nodes()
 
     assert not main.next
@@ -134,7 +134,7 @@ def test_tree_identify_last_lines():
     a.next = b
     b.next = c
 
-    tree = Tree(line_count = 40, _sections = (main, a, b, c))
+    tree = Tree(line_count = 40, sections = (main, a, b, c))
     tree.identify_last_lines()
 
     assert main.last == 40

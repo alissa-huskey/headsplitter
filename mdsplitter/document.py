@@ -21,6 +21,7 @@ class Document(Object):
     _text: str = None
     _title: str = None
     _tokens: list = None
+    _tree: Tree = None
 
     def __init__(self, path: Path=None, **kwargs):
         super().__init__(**kwargs)
@@ -127,4 +128,8 @@ class Document(Object):
         if not self.headings:
             return
 
-        return Tree(document=self)
+        if not self._tree:
+            self._tree = Tree(document=self)
+            self._tree.build()
+        return self._tree
+

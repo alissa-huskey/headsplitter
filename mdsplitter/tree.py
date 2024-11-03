@@ -18,6 +18,10 @@ class Tree(Object):
     headings: list = None
     line_count: int = 0
 
+    def __init__(self, **kwargs):
+        self.sections = []
+        super().__init__(**kwargs)
+
     @property
     def document(self):
         """."""
@@ -30,14 +34,12 @@ class Tree(Object):
         self.line_count = len(doc.lines)
         self.title = doc.title
 
-    @property
-    def sections(self):
-        """."""
-        self.construct()
+    def build(self):
+        """Go through all of the steps to build the tree."""
+        self.organize()
         self.order_siblings()
         self.find_next_nodes()
         self.identify_last_lines()
-        return self._sections
 
     @property
     def root(self):
@@ -46,8 +48,9 @@ class Tree(Object):
             return
         return self.sections[0]
 
-    def construct(self):
-        """Construct a hierarchical tree of sections nested by markdown heading."""
+    def organize(self):
+        """Organize sections into a nestedhierarchical tree by markdown
+        heading."""
         sections = []
         previous = None
 
@@ -78,16 +81,16 @@ class Tree(Object):
         root.children += tuple(set([node.root for node in sections]))
         sections.insert(0, root)
 
-        self._sections = sections
+        self.sections = sections
 
         return sections
 
     def order_siblings(self):
         """Mark the position of each section among its siblings."""
-        if not self._sections:
+        if not self.sections:
             return
 
-        for node in self._sections:
+        for node in self.sections:
             if node.siblings:
                 siblings = node.parent.children
                 node.order = siblings.index(node)
@@ -97,10 +100,10 @@ class Tree(Object):
 
         Find the next sibling or walk up the tree until you do or until you
         reach the root."""
-        if not self._sections:
+        if not self.sections:
             return
 
-        for section in self._sections:
+        for section in self.sections:
             marker = section
 
             while not section.next:
@@ -130,10 +133,10 @@ class Tree(Object):
 
     def identify_last_lines(self):
         """Identify the last line number for each section."""
-        if not self._sections:
+        if not self.sections:
             return
 
-        for section in self._sections:
+        for section in self.sections:
             if section.next:
                 section.last = section.next.first - 1
             else:
@@ -141,7 +144,7 @@ class Tree(Object):
 
     def __str__(self):
         """Return a text representation of tree."""
-        if not self._sections:
+        if not self.sections:
             return super().__str__()
-        root = self._sections[0]
+        root = self.sections[0]
         return RenderTree(root, style=AsciiStyle()).by_attr()
