@@ -130,7 +130,13 @@ def test_tree_identify_last_lines():
     THEN: each section .last should be assigned to the last line number of the section
     """
 
-    main, a, b, c = StubNode("main", first=0), StubNode("a", first=10), StubNode("b", first=20), StubNode("c", first=30)
+    main, a, b, c = (
+        StubNode("main", first=0),
+        StubNode("a", first=10),
+        StubNode("b", first=20),
+        StubNode("c", first=30),
+    )
+
     a.next = b
     b.next = c
 

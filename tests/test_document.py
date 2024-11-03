@@ -10,12 +10,6 @@ from . import assert_tree_equal, Stub
 bp = breakpoint
 
 
-@pytest.fixture
-def fixtures():
-    """Return the fixture Path."""
-    return Path(__file__).parent / "fixtures"
-
-
 def test_document():
     doc = Document()
     assert doc
