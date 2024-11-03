@@ -18,6 +18,8 @@ class Section(Object, NodeMixin):
     last: int = None
     _heading: Heading = None
 
+    EXCLUDE = ("next")
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.next = None
