@@ -65,7 +65,7 @@ def split(
         if section.heading.level == level:
             writer = Writer(
                 source=doc.lines,
-                bounds=(section.first-1, section.last),
+                bounds=(section.first, section.last),
                 dir=outdir,
                 name=section.heading.title,
             )

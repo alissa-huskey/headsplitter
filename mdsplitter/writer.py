@@ -52,7 +52,7 @@ class Writer(Object):
                 raise Exception("Writer.bounds attribute missing or empty.")
 
             first, last = self.bounds
-            self._lines = self.source[first:last]
+            self._lines = self.source[first:last+1]
         return self._lines
 
     @lines.setter
@@ -62,5 +62,5 @@ class Writer(Object):
 
     def write(self):
         """Write the lines to a file."""
-        text = "\n".join(self.lines) + "\n"
+        text = "\n".join(self.lines).strip() + "\n"
         self.dest.write_text(text)

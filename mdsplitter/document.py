@@ -117,7 +117,7 @@ class Document(Object):
         headings = []
 
         for i, token in self.heading_tokens.items():
-            heading = Heading(line=i, token=token, title_token=self.tokens[i+1])
+            heading = Heading(line=token.map[0], token=token, title_token=self.tokens[i+1])
             headings.append(heading)
 
         return headings

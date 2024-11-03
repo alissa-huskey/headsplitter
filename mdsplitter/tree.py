@@ -75,7 +75,6 @@ class Tree(Object):
             sections.append(section)
             previous = section
 
-
         # put everything is under a single document root
         root = Section(heading=Heading(title=(self.title or "Document")))
         root.children += tuple(set([node.root for node in sections]))
