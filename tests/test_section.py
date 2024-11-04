@@ -1,4 +1,4 @@
-from mdsplitter.section import Section
+from headsplitter.section import Section
 
 from . import Stub
 

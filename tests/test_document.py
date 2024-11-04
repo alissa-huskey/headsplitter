@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from anytree import RenderTree, AsciiStyle
 
-from mdsplitter.document import Document
+from headsplitter.document import Document
 
 from . import assert_tree_equal, Stub
 

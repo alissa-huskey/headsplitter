@@ -7,9 +7,9 @@ from rich.console import Console
 from rich.traceback import install as rich_tracebacks
 from typer import Argument, Exit, Option, Typer, FileTextWrite
 
-from mdsplitter import MdsplitterError
-from mdsplitter.writer import Writer
-from mdsplitter.document import Document
+from headsplitter import HeadsplitterError
+from headsplitter.writer import Writer
+from headsplitter.document import Document
 
 bp = breakpoint
 
@@ -21,7 +21,7 @@ cli = Typer()
 
 def error(ex: Exception):
     """Print an error message."""
-    if isinstance(ex, MdsplitterError):
+    if isinstance(ex, HeadsplitterError):
         ex = ex.message
 
     errors.print(f"[red]Error[/red] {ex}")
@@ -75,7 +75,7 @@ def run():
     """Start the command line interface."""
     try:
         cli()
-    except MdsplitterError as e:
+    except HeadsplitterError as e:
         error(e.message)
         exit(e.status)
     except SystemExit:

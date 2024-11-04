@@ -2,7 +2,7 @@ import pytest
 
 from pathlib import Path
 
-from mdsplitter.writer import Writer
+from headsplitter.writer import Writer
 
 
 @pytest.fixture

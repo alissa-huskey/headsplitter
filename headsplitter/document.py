@@ -6,9 +6,9 @@ from markdown_it import MarkdownIt
 from mdit_py_plugins.footnote import footnote_plugin
 from mdit_py_plugins.front_matter import front_matter_plugin
 
-from mdsplitter.heading import Heading
-from mdsplitter.object import Object
-from mdsplitter.tree import Tree
+from headsplitter.heading import Heading
+from headsplitter.object import Object
+from headsplitter.tree import Tree
 
 bp = breakpoint
 

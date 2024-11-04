@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "mdsplitter"
+name = "headsplitter"
 version = "0.1.0"
-description = "Split markdown files by headers."
+description = "Split markdown files on ATX-style or SETEXT-style headers."
 authors = ["Alissa Huskey <alissa.huskey@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -28,7 +28,7 @@ rich = "^13.9.4"
 typer = "^0.12.5"
 
 [tool.poetry.scripts]
-mds = "mdsplitter.cli:run"
+headsplit = "headsplitter.cli:run"
 
 [build-system]
 requires = ["poetry-core"]

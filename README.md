@@ -1,5 +1,5 @@
-mdsplitter
-==========
+headsplitter
+============
 
 > Split markdown files on ATX-style or SETEXT-style headers.
 
@@ -42,7 +42,7 @@ velit consectetur in. Aenean eleifend est ac justo cursus consequat.
 The command:
 
 ```bash
-mds my-markdown-file.md
+headsplit my-markdown-file.md
 ```
 
 Will create three files:

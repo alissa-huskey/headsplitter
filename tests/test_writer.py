@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from mdsplitter.writer import Writer
+from headsplitter.writer import Writer
 
 bp = breakpoint
 

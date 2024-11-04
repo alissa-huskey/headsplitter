@@ -1,12 +1,12 @@
 import pytest
 from anytree import Node, NodeMixin
 
-from mdsplitter.document import Document
-from mdsplitter.section import Section
-from mdsplitter.tree import Tree
+from headsplitter.document import Document
+from headsplitter.section import Section
+from headsplitter.tree import Tree
 
 # NOTE: don't use tests.Stub here, it breaks node.children
-from mdsplitter.object import Object as Stub
+from headsplitter.object import Object as Stub
 
 from . import assert_tree_equal, render_tree
 

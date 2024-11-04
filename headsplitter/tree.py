@@ -2,9 +2,9 @@
 
 from anytree import AsciiStyle, RenderTree
 
-from mdsplitter.heading import Heading
-from mdsplitter.object import Object
-from mdsplitter.section import Section
+from headsplitter.heading import Heading
+from headsplitter.object import Object
+from headsplitter.section import Section
 
 bp = breakpoint
 

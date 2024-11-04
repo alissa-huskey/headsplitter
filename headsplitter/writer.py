@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from mdsplitter.object import Object
+from headsplitter.object import Object
 
 
 class Writer(Object):

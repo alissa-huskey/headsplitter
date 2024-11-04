@@ -2,8 +2,8 @@
 
 from anytree import NodeMixin
 
-from mdsplitter.object import Object
-from mdsplitter.heading import Heading
+from headsplitter.object import Object
+from headsplitter.heading import Heading
 
 bp = breakpoint
 

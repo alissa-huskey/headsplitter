@@ -1,6 +1,6 @@
 """Heading module."""
 
-from mdsplitter.object import Object
+from headsplitter.object import Object
 
 
 class Heading(Object):

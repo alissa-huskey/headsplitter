@@ -1,5 +1,5 @@
-from mdsplitter.heading import Heading
-from mdsplitter.object import Object as Stub
+from headsplitter.heading import Heading
+from headsplitter.object import Object as Stub
 
 
 def test_heading():

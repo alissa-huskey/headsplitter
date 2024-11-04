@@ -2,7 +2,7 @@ from pathlib import Path
 
 from typer.testing import CliRunner
 
-from mdsplitter.cli import cli
+from headsplitter.cli import cli
 
 bp = breakpoint
 

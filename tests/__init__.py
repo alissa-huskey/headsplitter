@@ -1,6 +1,6 @@
 from anytree import AsciiStyle, RenderTree
 
-from mdsplitter.object import Object
+from headsplitter.object import Object
 
 bp = breakpoint
 
