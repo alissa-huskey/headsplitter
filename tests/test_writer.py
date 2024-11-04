@@ -11,6 +11,19 @@ def test_writer():
     writer = Writer()
     assert writer
 
+
+def test_writer_name():
+    """
+    GIVEN: A Writer object with a name set.
+    WHEN: .name is accessed
+    THEN: the name should be lower-cased
+    AND: the name should be dashed
+    AND: the name should include the count for that writer
+    AND: the name should include the count
+    """
+    writer = Writer(name="My Thingie")
+    assert writer.name == "01-my-thingie.md"
+
 def test_writer_dest():
     """
     GIVEN: A Writer object with an output dir and name
@@ -20,7 +33,7 @@ def test_writer_dest():
     cwd = Path()
     writer = Writer(dir=cwd, name="file")
 
-    assert writer.dest == cwd / "file.md"
+    assert writer.dest == cwd / "01-file.md"
 
 
 def test_writer_lines():
@@ -45,7 +58,7 @@ def test_writer_write(fixtures, tmp_path):
     THEN: the file should be created
     AND: those lines should be written to it.
     """
-    outfile = tmp_path / "def.md"
+    outfile = tmp_path / "01-def.md"
     writer = Writer(
         lines=list("def"),
         bounds=(3,6),

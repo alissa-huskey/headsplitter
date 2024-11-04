@@ -23,6 +23,14 @@ class Writer(Object):
     _lines: list = []
     """Lines to write to file."""
 
+    count = 0
+    """Class attribute to give each file a number."""
+
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.__class__.count += 1
+
     @property
     def dest(self):
         """Return the destination file Path object."""
@@ -34,7 +42,7 @@ class Writer(Object):
     @property
     def name(self):
         "Return the name."
-        return f"{self._name}.md"
+        return f"{self.count:02d}-{self._name}.md"
 
     @name.setter
     def name(self, name):
