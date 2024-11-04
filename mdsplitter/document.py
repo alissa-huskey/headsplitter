@@ -8,7 +8,6 @@ from mdit_py_plugins.front_matter import front_matter_plugin
 
 from mdsplitter.heading import Heading
 from mdsplitter.object import Object
-from mdsplitter.section import Section
 from mdsplitter.tree import Tree
 
 bp = breakpoint

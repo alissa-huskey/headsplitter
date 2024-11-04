@@ -52,7 +52,7 @@ class Writer(Object):
                 raise Exception("Writer.bounds attribute missing or empty.")
 
             first, last = self.bounds
-            self._lines = self.source[first:last+1]
+            self._lines = self.source[first:last]
         return self._lines
 
     @lines.setter
